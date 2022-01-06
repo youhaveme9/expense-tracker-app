@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import './transaction.dart';
 import 'package:intl/intl.dart';
+import './expanseCard.dart';
 
 void main() => runApp(MyApp());
 
@@ -28,6 +29,18 @@ class MyHomePage extends StatelessWidget {
       amount: 12.99,
       date: DateTime.now(),
     ),
+    Transaction(
+      id: 't3',
+      title: 'Toilet Paper',
+      amount: 2.49,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: 't3',
+      title: 'Toilet Paper',
+      amount: 2.49,
+      date: DateTime.now(),
+    ),
   ];
 
   @override
@@ -35,7 +48,7 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Expenses'),
-        backgroundColor: Colors.orange.shade500,
+        backgroundColor: Colors.orange.shade700,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -44,7 +57,7 @@ class MyHomePage extends StatelessWidget {
             width: double.infinity,
             height: 170,
             child: const Card(
-              color: Colors.teal,
+              color: Colors.purple,
               child: Text(
                 'Chart',
                 textAlign: TextAlign.center,
@@ -66,48 +79,10 @@ class MyHomePage extends StatelessWidget {
 
           Column(
             children: transaction.map((tx) {
-              return Card(
-                child: Row(
-                  children: <Widget>[
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Colors.orange,
-                          width: 3,
-                        ),
-                      ),
-                      padding: const EdgeInsets.all(10),
-                      margin: const EdgeInsets.symmetric(
-                        vertical: 30,
-                        horizontal: 20,
-                      ),
-                      child: Text(
-                        '\$${tx.amount}',
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                          color: Colors.orange,
-                        ),
-                      ),
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          tx.title,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 16,
-                          ),
-                        ),
-                        Text(
-                          DateFormat.yMMMEd().format(tx.date),
-                          style: const TextStyle(color: Colors.black54),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+              return ExpenseCard(
+                amount: tx.amount,
+                date: tx.date,
+                title: tx.title,
               );
             }).toList(),
           ),
