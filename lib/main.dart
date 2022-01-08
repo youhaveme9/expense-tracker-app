@@ -1,7 +1,8 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
-import './transaction.dart';
-import 'package:intl/intl.dart';
-import './expanseCard.dart';
+import './models/transaction.dart';
+import './expanse_card.dart';
 
 void main() => runApp(MyApp());
 
@@ -29,19 +30,15 @@ class MyHomePage extends StatelessWidget {
       amount: 12.99,
       date: DateTime.now(),
     ),
-    Transaction(
-      id: 't3',
-      title: 'Toilet Paper',
-      amount: 2.49,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't3',
-      title: 'Toilet Paper',
-      amount: 2.49,
-      date: DateTime.now(),
-    ),
   ];
+
+  final titleController = TextEditingController();
+  final amountController = TextEditingController();
+
+  void press() {
+    print(titleController.text);
+    print(amountController.text);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +54,7 @@ class MyHomePage extends StatelessWidget {
             width: double.infinity,
             height: 170,
             child: const Card(
-              color: Colors.purple,
+              color: Colors.orange,
               child: Text(
                 'Chart',
                 textAlign: TextAlign.center,
@@ -68,15 +65,29 @@ class MyHomePage extends StatelessWidget {
 
           //input area
           Card(
-            child: Column(
-              children: const <Widget>[
-                TextField(
-                  textAlign: TextAlign.center,
-                ),
-              ],
+            elevation: 7,
+            child: Container(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: <Widget>[
+                  TextField(
+                    decoration: InputDecoration(labelText: 'Title'),
+                    controller: titleController,
+                  ),
+                  TextField(
+                    decoration: InputDecoration(labelText: 'Amount'),
+                    controller: amountController,
+                  ),
+                  FlatButton(
+                    child: Text('Add Transiction'),
+                    onPressed: press,
+                    textColor: Colors.orange,
+                  )
+                ],
+              ),
             ),
           ),
-
           Column(
             children: transaction.map((tx) {
               return ExpenseCard(

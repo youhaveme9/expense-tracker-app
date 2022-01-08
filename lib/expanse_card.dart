@@ -15,12 +15,17 @@ class ExpenseCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: 7,
+      margin: const EdgeInsets.symmetric(
+        horizontal: 20,
+        vertical: 10,
+      ),
       child: Row(
         children: <Widget>[
           Container(
             decoration: BoxDecoration(
               border: Border.all(
-                color: Colors.orange.shade100,
+                color: Colors.orange,
                 width: 3,
               ),
             ),
@@ -58,3 +63,5 @@ class ExpenseCard extends StatelessWidget {
     );
   }
 }
+
+class $ {}
