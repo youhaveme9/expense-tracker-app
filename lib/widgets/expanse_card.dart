@@ -2,32 +2,14 @@ import 'package:flutter/material.dart';
 import '../models/transaction.dart';
 import 'package:intl/intl.dart';
 
-class ExpenseCard extends StatefulWidget {
-  const ExpenseCard({Key? key}) : super(key: key);
+class ExpenseCard extends StatelessWidget {
+  final List<Transaction> transaction;
 
-  @override
-  _ExpenseCardState createState() => _ExpenseCardState();
-}
-
-class _ExpenseCardState extends State<ExpenseCard> {
-  final List<Transaction> _userTransection = [
-    Transaction(
-      id: 't1',
-      title: 'New Shooes',
-      amount: 69.99,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't2',
-      title: 'Colors set',
-      amount: 12.99,
-      date: DateTime.now(),
-    ),
-  ];
+  ExpenseCard(this.transaction);
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: _userTransection.map((tx) {
+      children: transaction.map((tx) {
         return Card(
           elevation: 7,
           margin: const EdgeInsets.symmetric(
