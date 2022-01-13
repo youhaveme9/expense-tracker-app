@@ -1,8 +1,5 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
-import './models/transaction.dart';
-import './expanse_card.dart';
+import './widgets/expanse_card.dart';
 
 void main() => runApp(MyApp());
 
@@ -17,21 +14,6 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  final List<Transaction> transaction = [
-    Transaction(
-      id: 't1',
-      title: 'New Shooes',
-      amount: 69.99,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't2',
-      title: 'Colors set',
-      amount: 12.99,
-      date: DateTime.now(),
-    ),
-  ];
-
   final titleController = TextEditingController();
   final amountController = TextEditingController();
 
@@ -72,15 +54,15 @@ class MyHomePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: <Widget>[
                   TextField(
-                    decoration: InputDecoration(labelText: 'Title'),
+                    decoration: const InputDecoration(labelText: 'Title'),
                     controller: titleController,
                   ),
                   TextField(
-                    decoration: InputDecoration(labelText: 'Amount'),
+                    decoration: const InputDecoration(labelText: 'Amount'),
                     controller: amountController,
                   ),
                   FlatButton(
-                    child: Text('Add Transiction'),
+                    child: const Text('Add Transiction'),
                     onPressed: press,
                     textColor: Colors.orange,
                   )
@@ -88,15 +70,7 @@ class MyHomePage extends StatelessWidget {
               ),
             ),
           ),
-          Column(
-            children: transaction.map((tx) {
-              return ExpenseCard(
-                amount: tx.amount,
-                date: tx.date,
-                title: tx.title,
-              );
-            }).toList(),
-          ),
+          ExpenseCard(),
         ],
       ),
     );
